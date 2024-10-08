@@ -18,11 +18,73 @@
 main {
     min-height: calc(100vh - 100px);
   }
-
+/* 
 .checked{
     color: orange;
+} */
+
+.offcanvas{
+    z-index: 1050;
+}
+.offcanvas-body{
+    height: fit-content;
+    position: relative;
+} 
+
+.card {
+    background-color: #333;
+    border: none;
 }
 
-.offcanvas-top{
-    height: fit-content;
+.card-title {
+    font-weight: bold;
+    color: #ffff;
 }
+
+.card-text {
+    color: gray;
+    font-size: 1.2rem;
+}
+
+.checked {
+    color: orange;
+    font-size: 1.5rem;
+}
+.no-checked{
+    color: white;
+    font-size: 1.5rem;
+}
+.genres {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.dropdown{
+    position: relative !important;
+}
+.dropdown-menu {
+    z-index: 1060 !important;
+    min-width: 200px;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    font-size: 0.9rem;
+    color: #333;
+    padding: 5px 10px;
+}
+
+.btn-info {
+    background-color: #333;
+    border-color: #333;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn-info:hover {
+    background-color: gray;
+    border-color: gray;
+}
+
+

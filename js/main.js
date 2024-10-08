@@ -29,8 +29,6 @@ let getMovieInput = (searchValue) =>{
     return filteredMovies;
 };
 
-
-
 // Event that will be executed when the document is fully loaded.
 document.addEventListener('DOMContentLoaded', ()=>{
     let searchValue;
@@ -47,17 +45,70 @@ document.addEventListener('DOMContentLoaded', ()=>{
     searchValue = e.target.value.toLowerCase();
 })
     // Search button event
+    let listaHTML = document.getElementById('lista');
+
     document.getElementById('btnBuscar').addEventListener('click', (e) => {
+        listaHTML.innerHTML='';
+        let HTMLToAppend = '';
+        
         let result = getMovieInput(searchValue);
         result.forEach(element => {
-            document.getElementById('lista').innerHTML += `
-                <li class="list-group-item">
-                <p>${element.title}</p>
-                <p>${element.tagline}</p>
-                <p>${element.vote_average}</p>
-            </li>
-            `
+            let stars = '';
+            let rating = Math.round(element.vote_average/2);
+
+            for (let i = 0; i < rating; i++) {
+                stars += `<span class="fa fa-star checked"></span>`;
+            }
+            
+            for (let i = rating; i < 5; i++) {
+                stars += `<span class="fa fa-star no-checked"></span>`;
+            }
+
+            HTMLToAppend += `
+            <div class="card mb-3 movie-card" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" data-movie-id="${element.id}">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title">${element.title}</h5>
+                        <p class="card-text">${element.tagline}</p>
+                    </div>
+                    <div>
+                        ${stars}
+                    </div>
+                </div>
+            </div>
+        `;
         });
-    });
+        listaHTML.innerHTML = HTMLToAppend;
+// Add all cards an addEventListener that will send the element data to the offCanvas
+        document.querySelectorAll('.movie-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                let movieId = e.currentTarget.getAttribute('data-movie-id');
+                let selectedMovie = movies.find(movie => movie.id == movieId);
+
+                if (selectedMovie) {
+                    document.getElementById('offcanvasTopLabel').textContent = selectedMovie.title;
+                    document.querySelector('.offcanvas-body').innerHTML = `
+                        <p>${selectedMovie.overview}</p>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-start">
+                            <p class="genres">${selectedMovie.genres.map(genre => genre.name).join(' - ')}</p>
+                            <div class="dropdown">
+                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                                    More
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><span class="dropdown-item"><strong>Year:</strong> ${selectedMovie.year}</span></li>
+                                    <li><span class="dropdown-item"><strong>Runtime:</strong> ${selectedMovie.runtime} mins</span></li>
+                                    <li><span class="dropdown-item"><strong>Budget:</strong> $${selectedMovie.budget.toLocaleString()}</span></li>
+                                    <li><span class="dropdown-item"><strong>Revenue:</strong> $${selectedMovie.revenue.toLocaleString()}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+            });
+        });
+});
 });
 
