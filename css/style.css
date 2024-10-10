@@ -22,13 +22,13 @@ main {
 .checked{
     color: orange;
 } */
-
 .offcanvas{
-    z-index: 1050;
+    height: fit-content;
 }
 .offcanvas-body{
-    height: fit-content;
-    position: relative;
+    height: fit-content !important;
+    position: relative !important;
+    overflow: visible !important;
 } 
 
 .card {
@@ -59,14 +59,12 @@ main {
     color: #6c757d;
 }
 
-.dropdown{
-    position: relative !important;
-}
 .dropdown-menu {
-    z-index: 1060 !important;
     min-width: 200px;
     padding: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute !important;
+    z-index: 1070 !important;
 }
 
 .dropdown-item {

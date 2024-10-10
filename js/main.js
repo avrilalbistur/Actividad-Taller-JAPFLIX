@@ -93,10 +93,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
                         <div class="d-flex justify-content-between align-items-start">
                             <p class="genres">${selectedMovie.genres.map(genre => genre.name).join(' - ')}</p>
                             <div class="dropdown">
-                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-display="static">
                                     More
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                     <li><span class="dropdown-item"><strong>Year:</strong> ${selectedMovie.year}</span></li>
                                     <li><span class="dropdown-item"><strong>Runtime:</strong> ${selectedMovie.runtime} mins</span></li>
                                     <li><span class="dropdown-item"><strong>Budget:</strong> $${selectedMovie.budget.toLocaleString()}</span></li>
