@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 let selectedMovie = movies.find(movie => movie.id == movieId);
 
                 if (selectedMovie) {
+                    let movieYear = selectedMovie.release_date.split('-')[0]
                     document.getElementById('offcanvasTopLabel').textContent = selectedMovie.title;
                     document.querySelector('.offcanvas-body').innerHTML = `
                         <p>${selectedMovie.overview}</p>
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                                     More
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                    <li><span class="dropdown-item"><strong>Year:</strong> ${selectedMovie.year}</span></li>
+                                    <li><span class="dropdown-item"><strong>Year:</strong> ${movieYear}</span></li>
                                     <li><span class="dropdown-item"><strong>Runtime:</strong> ${selectedMovie.runtime} mins</span></li>
                                     <li><span class="dropdown-item"><strong>Budget:</strong> $${selectedMovie.budget.toLocaleString()}</span></li>
                                     <li><span class="dropdown-item"><strong>Revenue:</strong> $${selectedMovie.revenue.toLocaleString()}</span></li>
